@@ -3,9 +3,12 @@
 #define mx 10
 
 double table[50][50];
-double func(double x)
+double func(double ca,double cb, double cc, double x)
 {
-    return ((x-4)*(x-4)) * (x+2);
+    double up = (cc+x);
+    double lo = (ca-(2*x));
+    lo = (lo*lo) * (cb-x);
+    return ((up*1.0)/lo)-0.016;
 }
 
 void csv()
@@ -25,9 +28,9 @@ void csv()
     fclose(fp);
     printf("\n%sfile created",filename);
 }
-void falsePosition(double a, double b)
+void falsePosition(double ca, double cb, double cc,double a, double b)
 {
-    if (func(a) * func(b) >= 0)
+    if (func(ca,cb,cc,a) * func(ca,cb,cc,b) >= 0)
     {
         printf("You have not assumed right a and b\n");
         return;
@@ -39,7 +42,7 @@ void falsePosition(double a, double b)
     for (int i=0; i < mx; i++)
     {
         prev = present;
-        present = (a*func(b) - b*func(a))/ (func(b) - func(a));
+        present = (a*func(ca,cb,cc,b) - b*func(ca,cb,cc,a))/ (func(ca,cb,cc,b) - func(ca,cb,cc,a));
 
         if(i>0)
         {
@@ -52,12 +55,12 @@ void falsePosition(double a, double b)
         table[i][2] = b;
         table[i][3] = present;
         table[i][4] = error;
-        table[i][5] = func(present);
+        table[i][5] = func(ca,cb,cc,present);
 
-        if (func(present)==0)
+        if (func(ca,cb,cc,present)==0.0)
             break;
 
-        else if (func(present)*func(a) < 0)
+        else if (func(ca,cb,cc,present)*func(ca,cb,cc,a) < 0)
             b = present;
         else
             a = present;
@@ -70,7 +73,10 @@ void falsePosition(double a, double b)
 int main()
 {
 
-    double a =-1.0, b = -2.5;
-    falsePosition(a, b);
+    double ca=42,cb=28,cc=4,a=1,b=20, eps=0.0001;
+    printf("%f %f", func(ca,cb,cc,1), func(ca,cb,cc,20));
+    scanf("%f %f %f",&a, &b, &eps);
+    falsePosition(ca,cb,cc,a, b);
     return 0;
 }
+
