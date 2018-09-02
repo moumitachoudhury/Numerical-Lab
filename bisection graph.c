@@ -18,9 +18,21 @@ double power(double x, int n)
     }
     return ans;
 }
+
 long long fac[10000];
+long long fact()
+{
+    int i = 1;
+    fac[0] = 1;
+    for(int i=1;i<=15;i++)
+    {
+        fac[i] = fac[i-1] * i;
+    }
+}
+
 double func(double x, int n, int k)
 {
+    fact();
     double fr = power(x/2.0, n);
 
     double ans = 0;
@@ -43,6 +55,7 @@ double func(double x, int n, int k)
 
 }
 
+
 void csv(double x, double res)
 {
     int i,j;
@@ -60,16 +73,6 @@ void csv(double x, double res)
 
     fclose(fp);
     printf("\n%sfile created",filename);
-}
-
-long long fact()
-{
-    int i = 1;
-    fac[0] = 1;
-    for(int i=1;i<=15;i++)
-    {
-        fac[i] = fac[i-1] * i;
-    }
 }
 
 
@@ -103,11 +106,11 @@ void bisection(double a, double b)
 }
 int main()
 {
-    fact();
     for(double i=0.0; i<=10.0; i+=0.1)
     {
         func(i,2,5);
     }
+
     double a =-2.5, b = -1.0;
     //bisection(a, b);
     return 0;

@@ -39,15 +39,12 @@ void print()
     char l6[11]="f(Xm)";
     printf("|%12s |%12s |%12s |%12s |%12s |%12s
            |\n",l1,l2,l3,l4,l5,l6);
-    printf("|-------------|-------------|-------------|--------
-           -----|-------------|-------------|\n");
+    printf("|-------------|-------------|-------------|-------------|-------------|-------------|\n");
     int i=0;
 
     for(; i<tot; i++)
     {
-        printf("|%-12d |%-12f |%-12f |%-12f |%-12f |%-12f
-               |\n",i,table[i][1],table[i][2],table[i][3],table[i][4],tabl
-               e[i][5]);
+        printf("|%-12d |%-12f |%-12f |%-12f |%-12f |%-12f|\n",i,table[i][1],table[i][2],table[i][3],table[i][4],table[i][5]);
     }
     printf("Approximate Root = %lf\n",table[tot-1][3]);
     return ;
