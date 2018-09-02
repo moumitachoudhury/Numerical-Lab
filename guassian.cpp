@@ -142,7 +142,7 @@ void backSub(double mat[N][N+1])
 int main()
 {
     /* input matrix */
-    double mat[N][N+1] = {{0.0, 2.0,0.0, 3.0},
+    double mat[N][N+1] = {{0.0, 2.0,-4.0, 3.0},
                           {2.0, 3.0, 3.0, 15.0},
                           {5.0, -3, 1.0, 14.0}
                          };
